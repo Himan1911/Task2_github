@@ -1,10 +1,8 @@
-# Python script to scrape an article given the url of the article and store the extracted text in a file
-# Url: https://medium.com/@subashgandyer/papa-what-is-a-neural-network-c5e5cc427c7
-
 import os
 import requests
 import re
 # Code here - Import BeautifulSoup library
+from bs4 import BeautifulSoup
 
 # Code ends here
 
@@ -13,7 +11,8 @@ def get_page():
 	global url
 	
 	# Code here - Ask the user to input "Enter url of a medium article: " and collect it in url
-	
+	print('enter url of a medium article:')
+	url = input('>')
 	# Code ends here
 	
 	# handling possible error
@@ -22,6 +21,7 @@ def get_page():
 		sys.exit(1)
 
 	# Code here - Call get method in requests object, pass url and collect it in res
+	res = requests.get(url)
 	
 	# Code ends here
 
@@ -56,7 +56,8 @@ def save_file(text):
 	fname = f'scraped_articles/{name}.txt'
 	
 	# Code here - write a file using with (2 lines)
-	
+	with open(fname,'w') as f:
+		f.write(text)
 
 	# Code ends here
 
